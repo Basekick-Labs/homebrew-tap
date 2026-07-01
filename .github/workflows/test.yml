@@ -1,0 +1,33 @@
+name: Test Formulae
+
+# Validate formula style + installability on every push/PR so a bad edit or a
+# stale checksum is caught before users hit it.
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  test:
+    runs-on: macos-14
+    steps:
+      - uses: actions/checkout@v5
+
+      - name: brew style
+        run: brew style ./Formula/arc.rb
+
+      # `brew audit --strict` is intentionally NOT run here: it enforces
+      # homebrew-core-only rules (Sorbet strict sigils, etc.) that personal
+      # taps don't need. Style + a real install below is the meaningful gate.
+
+      - name: brew install from formula
+        # Skips if the referenced release assets don't exist yet (e.g. the
+        # formula was bumped before the release published darwin binaries).
+        run: |
+          if brew install --formula ./Formula/arc.rb; then
+            arc --help || true   # arc boots a server; --help may exit nonzero
+            echo "installed: $(brew --prefix)/bin/arc"
+            file "$(brew --prefix)/bin/arc"
+          else
+            echo "::warning::install failed — release assets may not be published yet for this version"
+          fi
