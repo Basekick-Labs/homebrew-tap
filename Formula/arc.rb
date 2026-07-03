@@ -7,12 +7,15 @@
 # GitHub release (built on macOS runners; DuckDB is statically linked, so the
 # binary depends only on macOS system libraries — no `depends_on`).
 #
+# Apple Silicon only: Homebrew on macOS is Apple-Silicon-only and the release
+# workflow does not build an Intel (darwin-amd64) asset.
+#
 # Install:  brew install basekick-labs/tap/arc
 #
-# UPDATING FOR A NEW RELEASE (usually automated by the release workflow):
+# UPDATING FOR A NEW RELEASE (automated by the release workflow):
 #   1. bump `version`
-#   2. replace both `sha256` values with the checksums of the release's
-#      arc-darwin-arm64 / arc-darwin-amd64 assets:
+#   2. replace `sha256` with the checksum of the release's arc-darwin-arm64
+#      asset:
 #        curl -sL https://github.com/Basekick-Labs/arc/releases/download/vVERSION/arc-darwin-arm64 | shasum -a 256
 class Arc < Formula
   desc "High-performance columnar analytical database (DuckDB/Parquet/Arrow)"
@@ -23,11 +26,7 @@ class Arc < Formula
   on_macos do
     on_arm do
       url "https://github.com/Basekick-Labs/arc/releases/download/v#{version}/arc-darwin-arm64"
-      sha256 "REPLACE_WITH_DARWIN_ARM64_SHA256"
-    end
-    on_intel do
-      url "https://github.com/Basekick-Labs/arc/releases/download/v#{version}/arc-darwin-amd64"
-      sha256 "REPLACE_WITH_DARWIN_AMD64_SHA256"
+      sha256 "4bd78edc233b7ea4560b52873e0c29d75a76c5e8e7a9aebf94c6e0cd483f9d3c"
     end
   end
 
