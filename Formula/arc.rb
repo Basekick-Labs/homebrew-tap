@@ -3,36 +3,39 @@
 
 # Homebrew formula for Arc — high-performance columnar analytical database.
 #
+# GENERATED FILE — do not edit by hand. The release workflow
+# (.github/workflows/release-build.yml, job `homebrew-formula`) renders this
+# template with the real version and arc-darwin-arm64 sha256, then pushes it to
+# basekick-labs/homebrew-tap. Edit this template, not the tap copy.
+#
 # Binary formula: downloads the prebuilt, cosign-signed macOS binary from the
 # GitHub release (built on macOS runners; DuckDB is statically linked, so the
-# binary depends only on macOS system libraries — no `depends_on`).
+# Mach-O depends only on macOS system libraries).
 #
-# Apple Silicon only: Homebrew on macOS is Apple-Silicon-only and the release
-# workflow does not build an Intel (darwin-amd64) asset.
+# Apple Silicon macOS only. The platform is declared with top-level
+# `depends_on :macos` / `depends_on arch: :arm64` (not nested on_macos/on_arm
+# blocks) so `brew install`/`brew info` on Linux or Intel macOS fails with a
+# clean "requires arm64 / macOS" message instead of the cryptic
+# `Error: arc: url is missing` you get when the only url is inside a skipped
+# platform block. The release workflow builds no Intel (darwin-amd64) asset.
 #
 # Install:  brew install basekick-labs/tap/arc
-#
-# UPDATING FOR A NEW RELEASE (automated by the release workflow):
-#   1. bump `version`
-#   2. replace `sha256` with the checksum of the release's arc-darwin-arm64
-#      asset:
-#        curl -sL https://github.com/Basekick-Labs/arc/releases/download/vVERSION/arc-darwin-arm64 | shasum -a 256
 class Arc < Formula
   desc "High-performance columnar analytical database (DuckDB/Parquet/Arrow)"
   homepage "https://github.com/basekick-labs/arc"
-  version "26.06.3"
+  url "https://github.com/basekick-labs/arc/releases/download/v26.09.1/arc-darwin-arm64"
+  version "26.09.1"
+  sha256 "1ac54a88d0a4ee6186144a56b24aab806245b14274b3183c2af45d0e0d59ae81"
   license "AGPL-3.0-or-later"
 
-  on_macos do
-    on_arm do
-      url "https://github.com/Basekick-Labs/arc/releases/download/v#{version}/arc-darwin-arm64"
-      sha256 "4bd78edc233b7ea4560b52873e0c29d75a76c5e8e7a9aebf94c6e0cd483f9d3c"
-    end
-  end
+  depends_on arch: :arm64
+  depends_on :macos
 
   def install
-    # The release asset is the bare binary named per-arch; install it as `arc`.
-    bin.install Dir["arc-darwin-*"].first => "arc"
+    # The release asset is the bare arm64 binary; install it as `arc`. Explicit
+    # name (not a glob) so a missing/renamed asset fails loud naming the file,
+    # rather than Dir[...].first => nil raising a cryptic TypeError.
+    bin.install "arc-darwin-arm64" => "arc"
   end
 
   def caveats
