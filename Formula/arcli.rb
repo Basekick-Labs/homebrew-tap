@@ -11,7 +11,7 @@ class Arcli < Formula
   on_macos do
     if Hardware::CPU.intel?
       url "https://github.com/Basekick-Labs/arcli/releases/download/v26.09.1/arcli_26.09.1_darwin_amd64.tar.gz"
-      sha256 "20d630974e920599b6442378996f912f3f47aa05010f3f66f6c54d7a93a5b3ff"
+      sha256 "b027a8ea64d33359e404c2ecc8334cf399d47966a21037c6ce047bb5eaf60ddf"
 
       define_method(:install) do
         bin.install "arcli"
@@ -23,7 +23,7 @@ class Arcli < Formula
     end
     if Hardware::CPU.arm?
       url "https://github.com/Basekick-Labs/arcli/releases/download/v26.09.1/arcli_26.09.1_darwin_arm64.tar.gz"
-      sha256 "67f673770842dbe38a6e871f2b27e85ff0f9c88588942b42eef1282bb8fa9431"
+      sha256 "820ee1fe46d618ebe9cc8804ecea4e2cc4d5f3d8f9dc83ac7ea2ac7399e72dc4"
 
       define_method(:install) do
         bin.install "arcli"
@@ -38,7 +38,7 @@ class Arcli < Formula
   on_linux do
     if Hardware::CPU.intel? && Hardware::CPU.is_64_bit?
       url "https://github.com/Basekick-Labs/arcli/releases/download/v26.09.1/arcli_26.09.1_linux_amd64.tar.gz"
-      sha256 "2f6c46cb396c7ab63d02ee493c8fc1f8fd18988343dc3cece27a5398a0c96cd1"
+      sha256 "d864b5d5c04e9856ef507680043d8286b6b17631bdb0a911faea590343212658"
       define_method(:install) do
         bin.install "arcli"
         bash_completion.install "completions/arcli.bash" => "arcli"
@@ -49,7 +49,7 @@ class Arcli < Formula
     end
     if Hardware::CPU.arm? && Hardware::CPU.is_64_bit?
       url "https://github.com/Basekick-Labs/arcli/releases/download/v26.09.1/arcli_26.09.1_linux_arm64.tar.gz"
-      sha256 "8f457663142068473993fc0a74490d027c709137b2a8c8d3b1ef65c07fd4d412"
+      sha256 "c08c44ba772c352f8bfbe490527f6d3e282872e29bd20bacb00808e3148e626c"
       define_method(:install) do
         bin.install "arcli"
         bash_completion.install "completions/arcli.bash" => "arcli"
