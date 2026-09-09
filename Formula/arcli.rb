@@ -5,13 +5,13 @@
 class Arcli < Formula
   desc "CLI for Arc time-series databases"
   homepage "https://github.com/Basekick-Labs/arcli"
-  version "26.09.3"
+  version "26.09.4"
   license "Apache-2.0"
 
   on_macos do
     if Hardware::CPU.intel?
-      url "https://github.com/Basekick-Labs/arcli/releases/download/v26.09.3/arcli_26.09.3_darwin_amd64.tar.gz"
-      sha256 "6b3c94cdbc4a3c021fffd14dea5a17a4d99034bd152ed765da34abd14941999d"
+      url "https://github.com/Basekick-Labs/arcli/releases/download/v26.09.4/arcli_26.09.4_darwin_amd64.tar.gz"
+      sha256 "1a5af0f1c3bf0af39a87fb8699d353cce77b6bda87104dc7491839e0d8cc1d07"
 
       define_method(:install) do
         bin.install "arcli"
@@ -22,8 +22,8 @@ class Arcli < Formula
       end
     end
     if Hardware::CPU.arm?
-      url "https://github.com/Basekick-Labs/arcli/releases/download/v26.09.3/arcli_26.09.3_darwin_arm64.tar.gz"
-      sha256 "71d39f1363f1622a186fa74587379c152446570e3386c8103d2d9ff1033eeac2"
+      url "https://github.com/Basekick-Labs/arcli/releases/download/v26.09.4/arcli_26.09.4_darwin_arm64.tar.gz"
+      sha256 "2e22e752b8ed7b1263959f83134b8848f74e3f19d6e8efa0fa9ed4f4b4e43db8"
 
       define_method(:install) do
         bin.install "arcli"
@@ -37,8 +37,8 @@ class Arcli < Formula
 
   on_linux do
     if Hardware::CPU.intel? && Hardware::CPU.is_64_bit?
-      url "https://github.com/Basekick-Labs/arcli/releases/download/v26.09.3/arcli_26.09.3_linux_amd64.tar.gz"
-      sha256 "032f38a516e57136143db5395844b834fa3d136ed436839ca4abd1a28be9eb88"
+      url "https://github.com/Basekick-Labs/arcli/releases/download/v26.09.4/arcli_26.09.4_linux_amd64.tar.gz"
+      sha256 "486a0e6b117148bd1f388275743109f393f95fdb56c1a30b931919dd9fd4c701"
       define_method(:install) do
         bin.install "arcli"
         bash_completion.install "completions/arcli.bash" => "arcli"
@@ -48,8 +48,8 @@ class Arcli < Formula
       end
     end
     if Hardware::CPU.arm? && Hardware::CPU.is_64_bit?
-      url "https://github.com/Basekick-Labs/arcli/releases/download/v26.09.3/arcli_26.09.3_linux_arm64.tar.gz"
-      sha256 "22c9be4fb27174013e3b17034c55ef3b228173e44b1d84276b78af1f0f8d08d3"
+      url "https://github.com/Basekick-Labs/arcli/releases/download/v26.09.4/arcli_26.09.4_linux_arm64.tar.gz"
+      sha256 "4cb58b6bbb0f2618ddd4d40f0f18ccbd034912516278d0c7a4b3ad0df17e7a53"
       define_method(:install) do
         bin.install "arcli"
         bash_completion.install "completions/arcli.bash" => "arcli"
