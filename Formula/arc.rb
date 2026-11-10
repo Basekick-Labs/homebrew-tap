@@ -23,9 +23,9 @@
 class Arc < Formula
   desc "High-performance columnar analytical database (DuckDB/Parquet/Arrow)"
   homepage "https://github.com/basekick-labs/arc"
-  url "https://github.com/basekick-labs/arc/releases/download/v26.09.3/arc-darwin-arm64"
-  version "26.09.3"
-  sha256 "f92c2f1d510eb37666b314e2fa8b61e88f37b07079a6ecb8ad2279a5b9a00b36"
+  url "https://github.com/basekick-labs/arc/releases/download/v26.09.4/arc-darwin-arm64"
+  version "26.09.4"
+  sha256 "0f4452efd4e721a896ca5b127dfe31c2978eee61a0661ae1227759c6272765f1"
   license "AGPL-3.0-or-later"
 
   depends_on arch: :arm64
